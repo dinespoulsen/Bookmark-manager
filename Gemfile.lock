@@ -118,6 +118,7 @@ DEPENDENCIES
   data_mapper
   database_cleaner
   dm-postgres-adapter
+  rack
   rspec
   rspec-sinatra
   sinatra
