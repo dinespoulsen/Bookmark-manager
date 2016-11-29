@@ -11,11 +11,9 @@ class Link
 
 end
 
-ENV['DATABASE_URL'] || 'postgres://localhost/mydb'
 
 # DataMapper::Logger.new($stdout, :debug)
-database = ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_" +
-          (ENV['RACK_ENV'] || "development")
+database = ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}"
 DataMapper.setup(:default, database)
 DataMapper.finalize
 DataMapper.auto_upgrade!
