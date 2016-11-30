@@ -12,7 +12,6 @@ class Link
 end
 
 
-# DataMapper::Logger.new($stdout, :debug)
 database = ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}"
 DataMapper.setup(:default, database)
 DataMapper.finalize
