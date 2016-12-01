@@ -7,9 +7,17 @@ feature "signing up" do
     expect(User.first.email).to eq("test@test.com")
   end
 
-  scenario "A user will not be able to sign in" do
+  scenario "A user will not be able to sign in without correct password" do
     expect{ sign_up(password_confirmation: 'wrong') }.not_to change(User, :count)
     expect(page).to have_content("Password and confirmation password do not match")
+  end
+
+  scenario "A user will not be able to sign in with no email address" do
+    expect{ sign_up(email: '')}.not_to change(User, :count)
+  end
+
+  scenario "A user will not be able to submit an invalid email" do
+    expect{ sign_up(email: 'invalid@email')}.not_to change(User, :count)
   end
 
 end
