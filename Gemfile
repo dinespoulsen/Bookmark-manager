@@ -13,4 +13,5 @@ gem "database_cleaner"
 gem "pg"
 gem "rake"
 gem "bcrypt"
-gem 'dm-validations'
+gem "dm-validations"
+gem "sinatra-flash"

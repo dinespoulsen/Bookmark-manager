@@ -7,6 +7,10 @@
 
 <body>
 
+  <% if flash[:notice] %>
+    <div id='notice'><%= flash[:notice]%></div>
+  <% end %>
+
   <% if current_user %>
     <h1>Welcome <%= current_user.email %></h1>
   <% end %>
