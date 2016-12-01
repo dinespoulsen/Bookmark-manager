@@ -13,3 +13,4 @@ gem "database_cleaner"
 gem "pg"
 gem "rake"
 gem "bcrypt"
+gem 'dm-validations'
