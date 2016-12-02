@@ -4,9 +4,7 @@ def sign_up
   fill_in("password", :with => "test")
   fill_in("password_confirmation", :with => "test")
   click_button("Create user")
-
-  user = User.get(1)
-  require 'pry'; binding.pry
+  # require 'pry'; binding.pry
 end
 
 def incorrect_sign_in

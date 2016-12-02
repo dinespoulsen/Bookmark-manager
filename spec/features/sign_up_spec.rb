@@ -14,5 +14,7 @@ feature "signing up a user" do
 
   scenario "A user matches email and email confirmation" do
     expect { incorrect_sign_in }.not_to change{ User.count }
+    expect(page.current_path).to eq '/users'
+    expect(page).to have_content("Password and password confirmation do not match")
   end
 end

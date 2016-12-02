@@ -7,8 +7,12 @@
 </head>
 
 <body>
+  <% if flash %>
+
+  <%= flash[:notice] %>
+
+  <% end %>
 
   <%= yield %>
-
 </body>
 </html>
