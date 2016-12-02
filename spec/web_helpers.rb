@@ -14,3 +14,19 @@ def incorrect_sign_in
   fill_in("password_confirmation", :with => "tst")
   click_button("Create user")
 end
+
+def blank_email_address
+  visit('/users/new')
+  fill_in("email", :with => "")
+  fill_in("password", :with => "test")
+  fill_in("password_confirmation", :with => "test")
+  click_button("Create user")
+end
+
+def invalid_email_address
+  visit('/users/new')
+  fill_in("email", :with => "sdfdasgafdh")
+  fill_in("password", :with => "test")
+  fill_in("password_confirmation", :with => "test")
+  click_button("Create user")
+end

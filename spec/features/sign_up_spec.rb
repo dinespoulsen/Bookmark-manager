@@ -12,9 +12,15 @@ feature "signing up a user" do
     expect{ sign_up }.to change{User.count}.from(0).to(1)
   end
 
-  scenario "A user matches email and email confirmation" do
+  scenario "A user matches password and password confirmation" do
     expect { incorrect_sign_in }.not_to change{ User.count }
-    expect(page.current_path).to eq '/users'
-    expect(page).to have_content("Password and password confirmation do not match")
+  end
+
+  scenario "A user can't sign up with a blank email address" do
+    expect { blank_email_address }.not_to change{ User.count }
+  end
+
+  scenario "A user can't sign up with an invalid email address" do
+    expect { invalid_email_address }.not_to change {User.count }
   end
 end
