@@ -19,13 +19,19 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/users' do
-    @user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-    if @user.save
-      session[:user_id] = User.first(email: params[:email]).id
-      session[:user] = params[:email]
-      redirect to('/links')
+    @user = User.first(email: params[:email])
+    if @user.nil?
+      @user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+      if @user.save
+        session[:user_id] = User.first(email: params[:email]).id
+        session[:user] = params[:email]
+        redirect to('/links')
+      else
+        flash.now[:notice] = "Password and password confirmation do not match"
+        erb(:sign_up)
+      end
     else
-      flash.now[:notice] = "Password and password confirmation do not match"
+      flash.now[:notice] = "Email is already taken"
       erb(:sign_up)
     end
   end

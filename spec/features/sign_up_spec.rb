@@ -23,4 +23,12 @@ feature "signing up a user" do
   scenario "A user can't sign up with an invalid email address" do
     expect { invalid_email_address }.not_to change {User.count }
   end
+
+  scenario "A user can't sign when email is already registered" do
+    sign_up
+    expect { sign_up }.not_to change {User.count}
+    expect(page).to have_content("Email is already taken")
+  end
+
+
 end
