@@ -36,6 +36,20 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
+  get '/sign-in' do
+    erb(:sign_in)
+  end
+
+  post '/sign-in' do
+    @user_id = User.first(email: params[:email]).id
+    redirect to("/users/#{@user_id}")
+  end
+
+  get '/users/:id' do
+    @user = User.get(params[:id])
+    erb(:user_page)
+  end
+
   get '/links' do
     @user = current_user
     @links1 = Link.all
