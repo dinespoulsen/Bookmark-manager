@@ -1,35 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Bookmark manager</title>
 
-  <link rel='stylesheet' type='text/css' href='/css/style.css'>
-</head>
+<nav>
+  <ul>
+    <li> <a href="/">Bookmark Manager </a></li>
+    <li> <a href='links'>View links </a></li>
+    <li> <a href="/links/new"> Add link </a></li>
+    <li > <a href="#"> Sign up </a></li>
+    <li> <a href="#"> Sign in </a></li>
+  </ul>
+</nav>
 
-<body>
-  <nav>
-    <ul>
-      <li> <a href="/">Bookmark Manager </a></li>
-      <li> <a href='links'>View links </a></li>
-      <li> <a href="/links/new"> Add link </a></li>
-      <li > <a href="#"> Sign up </a></li>
-      <li> <a href="#"> Sign in </a></li>
+
+<div class='view_links'>
+  <h1> BOOKMARKS </h1></br>
+  <ul id='links'>
+    <% @links.each do |link| %>
+    <p>
+      <li><strong>Title: </strong> <%= link.title  %> =>
+        <strong>URL: </strong> <%= link.url %></li>
+        <strong>Tag(s): </strong> <% link.tag.each do |entry| %><%= entry.tag %><% end %>
+      </p>
+      <% end %>
     </ul>
-  </nav>
-
-
-  <div class='view_links'>
-    <h1> BOOKMARKS </h1></br>
-    <ul id='links'>
-      <% @links.each do |link| %>
-      <p>
-        <li><strong>Title: </strong> <%= link.title  %> =>
-          <strong>URL: </strong> <%= link.url %></li>
-          <strong>Tag(s): </strong> <% link.tag.each do |entry| %><%= entry.tag %><% end %>
-        </p>
-        <% end %>
-      </ul>
-    </div>
-
-  </body>
-  </html>
+  </div>

@@ -6,6 +6,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require "database_cleaner"
+require 'web_helpers.rb'
 
 Capybara.app = BookmarkManager
 
