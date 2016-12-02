@@ -40,7 +40,7 @@ class BookmarkManager < Sinatra::Base
     erb(:sign_in)
   end
 
-  post '/sign-in' do
+  post '/signing-in' do
     @user_id = User.first(email: params[:email]).id
     redirect to("/users/#{@user_id}")
   end
