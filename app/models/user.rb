@@ -6,7 +6,7 @@ class User
 
   include DataMapper::Resource
   include BCrypt
-  attr_accessor :password_digest
+  attr_accessor :password_digest, :password_confirmation
   attr_reader :password
 
   property :id, Serial
@@ -18,5 +18,5 @@ class User
     self.password_digest = @password
   end
 
-
+  validates_confirmation_of :password
 end

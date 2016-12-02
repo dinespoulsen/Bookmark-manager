@@ -11,4 +11,8 @@ feature "signing up a user" do
   scenario "A user can be created" do
     expect{ sign_up }.to change{User.count}.from(0).to(1)
   end
+
+  scenario "A user matches email and email confirmation" do
+    expect { incorrect_sign_in }.not_to change{ User.count }
+  end
 end
