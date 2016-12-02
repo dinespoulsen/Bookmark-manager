@@ -5,9 +5,8 @@ require 'bcrypt'
 class User
 
   include DataMapper::Resource
-  include BCrypt
-  attr_accessor :password_digest, :password_confirmation
   attr_reader :password
+  attr_accessor :password_confirmation
 
   property :id, Serial
   property :email, String, required: true, unique: true
@@ -16,13 +15,13 @@ class User
   validates_confirmation_of :password
   validates_format_of :email, :as => :email_address
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_digest = @password
+  def password=(password)
+    @password = password
+    self.password_digest = BCrypt::Password.create(password)
   end
 
   def authenticate?(user_password)
-    self.password == user_password
+    BCrypt::Password.new(self.password_digest) == user_password
   end
 
 end
